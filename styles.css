@@ -959,8 +959,19 @@ iframe,
 .instagram-media * {
   border-radius: 0 !important;
 }
+/* ======================================
+   INSTAGRAM — BLACK & GREY GOTH FILTER
+   ====================================== */
+
+/* Turn Instagram images monochrome */
 .instagram-media,
 .instagram-media img,
 .instagram-media iframe {
-  filter: grayscale(1) contrast(1.25) brightness(0.85);
+  filter: grayscale(1) contrast(1.1) brightness(0.9);
+}
+
+/* Slight hover revival (optional, very MySpace) */
+.instagram-media:hover {
+  filter: grayscale(0.2) contrast(1.1) brightness(0.95);
+  transition: filter 0.2s linear;
 }
