@@ -1,0 +1,911 @@
+:root {
+  --bg: #000000;                         /* absolute black */
+  --panel: rgba(8, 4, 5, 0.94);          /* near-black wine */
+  --ink: #efe8ea;                        /* pale parchment */
+  --muted: #a89297;                      /* desaturated rose */
+  --line: rgba(140, 20, 30, 0.28);       /* dried blood */
+  --accent: #6e0f18;                    /* oxblood */
+  --accent2: #9b1b24;                   /* muted crimson */
+  --shadow: rgba(0, 0, 0, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Cinzel",
+    "Trajan Pro",
+    "Times New Roman",
+    serif;
+  color: var(--ink);
+  background: var(--bg);
+  letter-spacing: 0.45px;
+  overflow-x: hidden;
+}
+
+/* atmospheric vignette */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.35) 55%,
+      rgba(0,0,0,0.85) 100%
+    );
+  z-index: 0;
+}
+
+/* subtle grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.025) 0 1px,
+      transparent 1px 3px
+    );
+  z-index: 1;
+}
+
+/* LINKS */
+a {
+  color: var(--accent2);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LAYOUT */
+.wrap {
+  max-width: 960px;
+  margin: 56px auto;
+  padding: 0 20px 90px;
+  position: relative;
+  z-index: 2;
+}
+
+/* HEADER */
+header {
+  padding: 34px 30px;
+  border: 1px solid var(--line);
+  border-radius: 2px;                 /* sharp */
+  background: var(--panel);
+  box-shadow:
+    0 30px 90px var(--shadow),
+    inset 0 0 30px rgba(110,15,24,0.18);
+  position: relative;
+}
+
+/* faint sigil haze */
+header::before {
+  content: "";
+  position: absolute;
+  inset: -120px;
+  background:
+    radial-gradient(
+      circle at 20% 25%,
+      rgba(110,15,24,0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(155,27,36,0.22),
+      transparent 65%
+    );
+  filter: blur(26px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* TITLES */
+h1 {
+  margin: 0 0 12px;
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(110,15,24,0.35);
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border: 1px solid var(--line);
+  border-radius: 1px;                 /* harsh corners */
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10,4,5,0.95),
+      rgba(4,1,2,0.95)
+    );
+  color: var(--ink);
+  font-size: 0.95rem;
+  letter-spacing: 0.6px;
+  box-shadow:
+    0 14px 32px rgba(0,0,0,0.85),
+    inset 0 0 12px rgba(110,15,24,0.18);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 20px rgba(110,15,24,0.45),
+    0 18px 40px rgba(0,0,0,0.9);
+  text-decoration: none;
+}
+
+.btn .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent2);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* SECTIONS */
+section {
+  margin-top: 24px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 1px;
+  background: rgba(6,2,3,0.92);
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.9),
+    inset 0 0 22px rgba(110,15,24,0.12);
+}
+
+/* SECTION HEADERS */
+h2 {
+  margin: 0 0 18px;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--accent),
+      transparent
+    );
+}
+
+/* ITEMS */
+.item {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(140,20,30,0.18);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.role {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+/* LISTS */
+ul {
+  margin-left: 18px;
+}
+
+li {
+  margin: 8px 0;
+  color: #eadadd;
+}
+
+/* SKILLS */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  padding: 7px 11px;
+  border: 1px solid rgba(140,20,30,0.35);
+  border-radius: 1px;
+  background: rgba(5,1,2,0.95);
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 48px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ====== HARD MYSPACE-STYLE EDGES ====== */
+
+/* Remove all rounding everywhere */
+* {
+  border-radius: 0 !important;
+}
+
+/* Explicitly reinforce sharp edges on key elements */
+header,
+section,
+.btn,
+.pill,
+.item,
+.grid,
+.wrap,
+footer {
+  border-radius: 0 !important;
+}
+
+/* ================================
+   MYSPACE GOTH MODE (MAXIMUM)
+   ================================ */
+
+/* Fixed-width, old-school layout */
+.wrap {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+/* EVERYTHING SHARP */
+* {
+  border-radius: 0 !important;
+}
+
+/* Underlined links everywhere */
+a {
+  text-decoration: underline !important;
+  color: #9b1b24;
+}
+
+a:hover {
+  color: #ff1a1a;
+  background: #000;
+}
+
+/* Double-bordered boxes (classic MySpace tables) */
+header,
+section {
+  border: 2px double rgba(140, 20, 30, 0.9);
+  background: #000;
+}
+
+/* Extra inner border for that “nested table” feel */
+header::after,
+section::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(140, 20, 30, 0.45);
+  pointer-events: none;
+}
+
+/* Section titles: boxed + aggressive */
+h2 {
+  border: 1px solid rgba(140, 20, 30, 0.9);
+  padding: 6px 10px;
+  display: inline-block;
+  background: #000;
+}
+
+/* Remove soft gradients completely */
+header,
+section,
+.btn,
+.pill {
+  background: #000 !important;
+}
+
+/* Buttons now look like clickable forum links */
+.btn {
+  border: 1px solid #9b1b24;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: #140204 !important;
+  box-shadow: none;
+}
+
+/* Skills become old-school tags */
+.pill {
+  border: 1px solid #9b1b24;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  background: #000;
+}
+
+/* Dotted red dividers like profile sections */
+.item {
+  border-bottom: 1px dotted rgba(255, 26, 26, 0.6);
+}
+
+/* Lists tighter, more “HTML table” feeling */
+ul {
+  margin-left: 14px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+/* Footer like MySpace copyright text */
+footer {
+  border-top: 1px solid rgba(140, 20, 30, 0.9);
+  padding-top: 12px;
+  font-size: 0.8rem;
+}
+
+/* Disable modern animations */
+* {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ==========================================
+   MAX MYSPACE GOTH PACK (ALL THE THINGS)
+   Solid black base, hard edges, old-web energy
+   ========================================== */
+
+/* HARD EDGES EVERYWHERE */
+* { border-radius: 0 !important; }
+
+/* Ensure everything is boxed and stark */
+header, section, .btn, .pill, .top8-card, .comment, .marquee {
+  background: #000 !important;
+  border-color: rgba(140, 20, 30, 0.85) !important;
+}
+
+/* Underlined links like MySpace */
+a { text-decoration: underline !important; }
+a:hover { color: #ff1a1a; background: #000; }
+
+/* Double-border “table” look */
+header, section {
+  border: 2px double rgba(140, 20, 30, 0.9) !important;
+  position: relative;
+}
+
+/* Inner inset border for nested-table vibes */
+header::after, section::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(140, 20, 30, 0.45);
+  pointer-events: none;
+}
+
+/* Aggressive boxed headers + hover blink */
+h2 {
+  border: 1px solid rgba(140, 20, 30, 0.9);
+  padding: 6px 10px;
+  display: inline-block;
+  background: #000;
+}
+
+h2:hover {
+  animation: blink666 0.7s steps(2, end) infinite;
+}
+
+@keyframes blink666 {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* ASCII divider */
+.ascii-divider {
+  margin-top: 14px;
+  color: rgba(255, 26, 26, 0.7);
+  letter-spacing: 2px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Marquee (CSS safe version) */
+.marquee {
+  margin-top: 16px;
+  border: 1px solid rgba(140, 20, 30, 0.85);
+  padding: 8px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.marquee__track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollMyspace 16s linear infinite;
+  color: rgba(255, 26, 26, 0.75);
+}
+
+@keyframes scrollMyspace {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Top 8 grid */
+.top8 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .top8 { grid-template-columns: 1fr; }
+}
+
+.top8-card {
+  border: 2px solid rgba(140, 20, 30, 0.85);
+  padding: 12px;
+}
+
+.top8-name {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 26, 26, 0.85);
+  margin-bottom: 6px;
+}
+
+.top8-desc {
+  color: rgba(239, 232, 234, 0.85);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.top8-link {
+  display: inline-block;
+  border: 1px solid rgba(140, 20, 30, 0.85);
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Now Playing */
+.now-playing {
+  border: 2px solid rgba(140, 20, 30, 0.85);
+  padding: 12px;
+}
+
+.np-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.np-label {
+  color: rgba(255, 26, 26, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.np-value { color: rgba(239, 232, 234, 0.85); }
+
+.now-playing audio {
+  width: 100%;
+  margin-top: 10px;
+  filter: grayscale(1) contrast(1.2);
+}
+
+.np-note {
+  margin-top: 10px;
+  color: rgba(194, 160, 167, 0.85);
+  font-size: 0.9rem;
+}
+
+/* Comments / Guestbook */
+.comment {
+  border: 2px solid rgba(140, 20, 30, 0.85);
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted rgba(255, 26, 26, 0.6);
+}
+
+.comment-user {
+  font-weight: 800;
+  color: rgba(255, 26, 26, 0.85);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.comment-meta {
+  color: rgba(194, 160, 167, 0.85);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.comment-body {
+  margin-top: 10px;
+  color: rgba(239, 232, 234, 0.9);
+}
+
+.comment.note {
+  border-style: dashed;
+  color: rgba(194, 160, 167, 0.9);
+  font-style: italic;
+}
+
+/* Extra MySpace: dotted dividers */
+.item {
+  border-bottom: 1px dotted rgba(255, 26, 26, 0.55) !important;
+}
+
+/* Kill modern transitions/animations except marquee/blink */
+* {
+  transition: none !important;
+}
+
+/* Keep marquee/blink, stop the rest */
+header, section, .btn::before, .pill::before {
+  animation: none !important;
+}
+
+/* Spotify embed — MySpace goth styling */
+.spotify-player {
+  border: 2px solid rgba(140, 20, 30, 0.85);
+  background: #000;
+  margin-top: 10px;
+  filter:
+    grayscale(1)
+    contrast(1.15)
+    brightness(0.85);
+}
+
+/* Remove Spotify's rounded corners */
+.spotify-player {
+  border-radius: 0 !important;
+}
+/* =========================================================
+   FINAL LAYOUT OVERRIDES — Desktop + Mobile “Perfect”
+   Paste at END of styles.css
+   ========================================================= */
+
+/* 1) Safer sizing so nothing overflows on mobile */
+* { max-width: 100%; }
+img, iframe { max-width: 100%; }
+
+/* 2) Make typography scale nicely */
+h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.15; }
+.tagline { font-size: clamp(0.95rem, 2.2vw, 1.05rem); line-height: 1.35; }
+h2 { font-size: clamp(1.05rem, 2.3vw, 1.35rem); }
+
+/* 3) Tighten the global container for desktop, but allow padding on phones */
+.wrap {
+  width: min(900px, 100%);
+  margin: 28px auto;
+  padding: 0 12px 70px;
+}
+
+/* 4) Make header content breathe on small screens */
+header {
+  padding: 18px 14px;
+}
+@media (min-width: 700px) {
+  header { padding: 30px 26px; }
+}
+
+/* 5) Buttons: wrap cleanly, become full-width on mobile like old MySpace */
+.top-actions {
+  gap: 10px;
+  margin-top: 10px;
+}
+.btn {
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .top-actions { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; justify-content: center; }
+}
+
+/* 6) ASCII divider spacing */
+.ascii-divider {
+  margin: 16px 0;
+  padding: 0 6px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* 7) MAIN GRID: stable desktop sidebar, stacked mobile */
+.grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* 8) Sections spacing */
+section {
+  margin-top: 14px;
+  padding: 16px 14px;
+}
+@media (min-width: 700px) {
+  section { margin-top: 18px; padding: 20px 18px; }
+}
+
+/* 9) Improve readability of Experience lists on phones */
+ul { margin-left: 16px; }
+li { line-height: 1.35; }
+
+/* 10) Spotify embed: never squish, keep consistent height */
+.spotify-player {
+  display: block;
+  width: 100% !important;
+  height: 152px;
+}
+@media (max-width: 420px) {
+  .spotify-player { height: 170px; } /* a touch taller on tiny screens */
+}
+
+/* 11) Now Playing rows: label/value stack on narrow screens */
+.np-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+}
+@media (max-width: 420px) {
+  .np-row { grid-template-columns: 1fr; gap: 4px; }
+  .np-label { opacity: 0.85; }
+}
+
+/* 12) Top 8: always 2 columns on desktop, 1 on mobile */
+.top8 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 520px) {
+  .top8 { grid-template-columns: 1fr; }
+}
+
+/* 13) Guestbook header: prevent meta from overflowing */
+.comment-header {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+.comment-meta {
+  white-space: normal;
+  text-align: left;
+}
+
+/* 14) Kill accidental absolute overlays causing tap issues on mobile */
+header::after, section::after {
+  pointer-events: none;
+}
+
+/* 15) Ensure MySpace sharpness stays */
+* { border-radius: 0 !important; }
+.btn { min-height: 44px; }
+/* Guestbook form (MySpace style) */
+.guestbook-form {
+  border: 2px solid rgba(140, 20, 30, 0.85);
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #000;
+  display: grid;
+  gap: 8px;
+}
+
+.guestbook-form input,
+.guestbook-form textarea {
+  background: #000;
+  color: #efe8ea;
+  border: 1px solid rgba(140, 20, 30, 0.85);
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.guestbook-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.guestbook-form input::placeholder,
+.guestbook-form textarea::placeholder {
+  color: rgba(168, 146, 151, 0.7);
+}
+
+.guestbook-form button {
+  align-self: flex-start;
+}
+.comment-meta {
+  letter-spacing: 0.6px;
+}
+/* =========================================================
+   MOBILE SAFETY NET — NO SIDE SCROLL, FULL SCREEN
+   ========================================================= */
+
+/* 1) Absolute rule: never allow horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 2) Force all layout containers to respect viewport */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* 3) Prevent pseudo-elements from causing overflow */
+header::before,
+header::after,
+section::before,
+section::after,
+body::before,
+body::after {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* 4) Wrap container must never exceed viewport */
+.wrap {
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* 5) Grid: hard stop on overflow */
+.grid {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* 6) Buttons & pills cannot force width */
+.btn,
+.pill {
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* 7) Marquee text must not overflow viewport */
+.marquee {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.marquee__track {
+  max-width: 100%;
+}
+
+/* 8) ASCII dividers must wrap, not stretch */
+.ascii-divider {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* 9) Spotify iframe safety */
+iframe,
+.spotify-player {
+  max-width: 100% !important;
+  width: 100% !important;
+  display: block;
+}
+
+/* 10) Comment header must wrap on small screens */
+.comment-header {
+  flex-wrap: wrap;
+}
+
+/* 11) FINAL MOBILE OVERRIDES */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .wrap {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  section {
+    padding: 14px 10px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
