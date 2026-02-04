@@ -909,3 +909,6 @@ iframe,
     justify-content: center;
   }
 }
+.comment-user {
+  text-shadow: 0 0 6px rgba(155, 27, 36, 0.6);
+}
