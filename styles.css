@@ -959,3 +959,8 @@ iframe,
 .instagram-media * {
   border-radius: 0 !important;
 }
+.instagram-media,
+.instagram-media img,
+.instagram-media iframe {
+  filter: grayscale(1) contrast(1.25) brightness(0.85);
+}
