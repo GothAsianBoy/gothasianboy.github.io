@@ -935,3 +935,27 @@ iframe,
 @media (min-width: 800px) {
   .ig-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+.ig-embed-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.instagram-media {
+  border: 2px solid rgba(140, 20, 30, 0.85) !important;
+  background: #000 !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+@media (min-width: 900px) {
+  .ig-embed-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Kill rounded corners */
+.instagram-media * {
+  border-radius: 0 !important;
+}
