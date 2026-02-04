@@ -1048,3 +1048,8 @@ iframe,
     padding: 4px;
   }
 }
+.tiktok-fallback {
+  margin-top: 12px;
+  color: rgba(194, 160, 167, 0.9);
+  font-size: 0.95rem;
+}
