@@ -975,3 +975,40 @@ iframe,
   filter: grayscale(0.2) contrast(1.1) brightness(0.95);
   transition: filter 0.2s linear;
 }
+
+/* ======================================
+   INSTAGRAM — SINGLE POST FEED (MYSPACE)
+   ====================================== */
+
+.ig-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Force embeds to be full-width, stacked */
+.ig-feed .instagram-media {
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  background: #000 !important;
+  border: 2px solid rgba(140, 20, 30, 0.85) !important;
+}
+
+/* Black & grey gothic filter */
+.ig-feed .instagram-media,
+.ig-feed .instagram-media img,
+.ig-feed .instagram-media iframe {
+  filter: grayscale(1) contrast(1.15) brightness(0.9);
+}
+
+/* Optional hover: slight color return */
+.ig-feed .instagram-media:hover {
+  filter: grayscale(0.25) contrast(1.1) brightness(0.95);
+  transition: filter 0.2s linear;
+}
+
+/* Kill rounded corners inside embed */
+.ig-feed .instagram-media * {
+  border-radius: 0 !important;
+}
