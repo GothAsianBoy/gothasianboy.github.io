@@ -959,3 +959,14 @@ iframe,
 .instagram-media * {
   border-radius: 0 !important;
 }
+/* Make the surrounding tile dark + framed */
+.ig-embed-grid .instagram-media {
+  background: #000 !important;
+  border: 2px solid rgba(140, 20, 30, 0.85) !important;
+  margin: 0 !important;
+}
+
+/* Reduce the default embed padding/margins */
+.ig-embed-grid .instagram-media-rendered {
+  margin: 0 !important;
+}
